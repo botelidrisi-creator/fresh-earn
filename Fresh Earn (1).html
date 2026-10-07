@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Fresh Earn</title><style>
+:root{--g:#2ecc71;--g2:#179a52;--gl:#e6f8ed;--bg:#f3fbf6;--cd:#fff;--tx:#12301f;--mu:#68826f;--sh:0 10px 22px rgba(30,150,80,.16),0 2px 5px rgba(0,0,0,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b14;--cd:#172a1f;--tx:#e5f5eb;--mu:#8cae99;--gl:#1e3a2a}}
+:root[data-theme="dark"]{--bg:#0e1b14;--cd:#172a1f;--tx:#e5f5eb;--mu:#8cae99;--gl:#1e3a2a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:480px;margin:0 auto;padding:14px 14px 90px;animation:in .3s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hd{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#43e08a,#1fb35f);color:#fff;border-radius:20px;padding:14px 16px;box-shadow:var(--sh);margin-bottom:14px}
+.hd small{opacity:.85;display:block;font-size:12px}.hd b{word-break:break-all}.coin{background:#fff;color:#128a47;border-radius:999px;padding:6px 12px;font-weight:700;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08)}
+.card{background:var(--cd);border-radius:20px;padding:16px;box-shadow:var(--sh);margin-bottom:12px;transition:transform .15s}
+.btn{width:100%;border:0;border-radius:16px;padding:14px;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(180deg,#3fdc84,#1fa95a);box-shadow:0 5px 0 #14803f,0 10px 16px rgba(30,150,80,.25);cursor:pointer;transition:transform .12s,box-shadow .12s;margin-top:10px}
+.btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #14803f}.btn:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
+.ghost{background:var(--gl);color:var(--g2);border:0;border-radius:14px;padding:10px 14px;font-weight:600;cursor:pointer;margin-top:8px}
+.btn.sec{background:linear-gradient(180deg,#fff,#eaf7ef);color:#127a42;box-shadow:0 4px 0 #bfe3cc}
+input,textarea{width:100%;padding:13px;border-radius:14px;border:2px solid var(--gl);background:var(--cd);color:var(--tx);font-size:15px;margin-top:8px;outline:0}input:focus,textarea:focus{border-color:var(--g)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.mu{color:var(--mu);font-size:13px}
+.ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:linear-gradient(145deg,#fff,#d9f5e4);box-shadow:5px 6px 12px rgba(30,150,80,.25),-3px -3px 8px rgba(255,255,255,.7)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--cd);box-shadow:0 -6px 18px rgba(0,0,0,.08);display:flex;justify-content:center;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+.nav button{flex:1;max-width:150px;border:0;background:none;color:var(--mu);font-weight:600;padding:8px;border-radius:12px;cursor:pointer}.nav .on{background:var(--gl);color:var(--g2)}
+.bar{height:10px;border-radius:9px;background:var(--gl);overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#43e08a,#1fa95a);transition:width .25s linear}
+.arena{position:relative;height:250px;border-radius:16px;background:var(--gl);overflow:hidden;user-select:none;touch-action:manipulation}
+.it{position:absolute;font-size:38px;border:0;background:none;padding:0;cursor:pointer;animation:pop .25s ease}@keyframes pop{from{transform:scale(.2)}to{transform:scale(1)}}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.opt button{padding:16px;font-size:20px;font-weight:700;border:0;border-radius:14px;background:var(--cd);color:var(--tx);box-shadow:var(--sh);cursor:pointer}
+.msg{text-align:center;font-weight:700;min-height:24px;margin-top:8px}.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.Pending{background:#fff3cd;color:#8a6400}.Completed{background:#d6f5e1;color:#127a42}.Rejected{background:#fde0e0;color:#b02a2a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.amt{padding:12px;border-radius:14px;border:2px solid var(--gl);background:var(--cd);color:var(--tx);font-weight:700;cursor:pointer}.amt.on{border-color:var(--g);background:var(--gl)}
+.ov{position:fixed;inset:0;background:rgba(10,30,18,.88);display:grid;place-items:center;z-index:9;padding:20px}.ov .card{text-align:center;width:100%;max-width:340px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#12301f;color:#fff;padding:10px 16px;border-radius:999px;z-index:20;max-width:90%;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;text-align:left;border-bottom:1px solid var(--gl);word-break:break-all}.sc{overflow-x:auto}
+label.t{display:flex;gap:10px;align-items:flex-start;margin-top:12px}label.t input{width:22px;margin:0;accent-color:#1fa95a}h2{margin:4px 0 8px}
+</style></head><body><div id="app"></div><script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const DEF={coinsPerAd:10,coinsPerRupee:120,minCoins:1200,play:10,wait:8,adSec:5,adminPass:'admin123',appText:'Play. Collect. Earn.',terms:'1. One account per person. 2. Cheating, bots or fake accounts lead to a ban. 3. Coins have no value until a withdrawal is approved. 4. Payouts are sent manually and may take time. 5. We may change rates or rules at any time.',games:{math:1,balloon:1,fruit:1},wd:{upi:1,gplay:1,amazon:1,flipkart:1}};
+const G={math:{n:'Math Quiz',i:'➕'},balloon:{n:'Balloon Pop',i:'🎈'},fruit:{n:'Fruit Collect',i:'🍎'}};
+const W={upi:{n:'UPI',i:'💸'},gplay:{n:'Google Play Redeem Code',i:'▶️'},amazon:{n:'Amazon',i:'📦'},flipkart:{n:'Flipkart',i:'🛍️'}};
+const AMTS=[10,20,30,40,50],TASKS=15;
+let DB,V='login',T=null,WS={t:null,a:null},A={ok:false,tab:'dash'};
+function load(){try{DB=JSON.parse(localStorage.getItem('fe')||'null')}catch(e){DB=null}if(!DB||typeof DB!=='object')DB={};DB.users=DB.users||{};DB.wd=DB.wd||[];DB.total=DB.total||0;DB.cfg=Object.assign({},DEF,DB.cfg||{});DB.cfg.games=Object.assign({},DEF.games,DB.cfg.games);DB.cfg.wd=Object.assign({},DEF.wd,DB.cfg.wd)}
+function save(){try{localStorage.setItem('fe',JSON.stringify(DB))}catch(e){toast('Could not save data')}}
+const C=()=>DB.cfg,me=()=>DB.users[DB.session]||null;
+function toast(m){const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}
+function stopT(){if(T){T.dead=true;clearInterval(T.iv);clearInterval(T.sp)}}
+function login(email){const id=email?email.toLowerCase():(DB.guest=DB.guest||'guest-'+Date.now().toString(36)+rnd(100,999));
+ if(!DB.users[id])DB.users[id]={id,name:email?email:'Guest',type:email?'Email':'Guest',coins:0,earned:0,progress:{math:0,balloon:0,fruit:0},created:Date.now()};
+ DB.users[id].last=Date.now();DB.session=id;save();V='home';render()}
+function hdr(){const u=me();return `<div class="hd"><div><small>Logged in as</small><b>${esc(u.name)}</b></div><div class="coin">🪙 <span id="cn">${u.coins}</span></div></div>`}
+function nav(){return `<div class="nav">${[['home','🏠 Home'],['wd','💰 Withdraw'],['hist','🧾 History']].map(([k,l])=>`<button class="${V===k?'on':''}" data-a="go" data-v="${k}">${l}</button>`).join('')}</div>`}
+function render(){stopT();const a=$('#app');
+ if(V==='admin'){a.innerHTML=adminHTML();return}
+ const u=me();if(!u){V='login'}
+ if(V==='login'){a.innerHTML=`<div class="card" style="text-align:center;margin-top:30px"><div class="ic" style="margin:0 auto 8px;width:72px;height:72px;font-size:38px">🌿</div><h2>Fresh Earn</h2><div class="mu">${esc(C().appText)}</div></div>
+ <div class="card"><b>Login with Email</b><input id="em" type="email" placeholder="you@gmail.com" autocomplete="email"><button class="btn" id="lb" data-a="login" disabled>Login</button><button class="btn sec" id="gb" data-a="guest" disabled>Continue as Guest</button>
+ <label class="t"><input type="checkbox" id="tc"><span>I agree to the Terms &amp; Conditions</span></label><details style="margin-top:8px"><summary class="mu">Read Terms</summary><p class="mu">${esc(C().terms)}</p></details></div>
+ <div style="text-align:center"><button class="ghost" data-a="adm">Admin</button></div>`;
+  $('#tc').onchange=e=>{$('#lb').disabled=$('#gb').disabled=!e.target.checked};return}
+ if(V==='home'){a.innerHTML=hdr()+Object.keys(G).map(g=>{const p=u.progress[g]||0,on=C().games[g];return `<div class="card" style="${on?'':'opacity:.5'}"><div class="row"><div class="row"><div class="ic">${G[g].i}</div><div><b>${G[g].n}</b><div class="mu">${p}/${TASKS} tasks • ${on?'+'+C().coinsPerAd+' coins per ad':'Disabled'}</div></div></div></div><div class="bar"><i style="width:${p/TASKS*100}%"></i></div><button class="btn" data-a="play" data-g="${g}" ${on&&p<TASKS?'':'disabled'}>${p>=TASKS?'All done':'Play'}</button></div>`}).join('')+`<div style="text-align:center"><button class="ghost" data-a="out">Logout</button></div>`+nav();return}
+ if(V==='wd'){const s=WS.t;let h=hdr()+`<div class="mu" style="margin:0 4px 10px">${C().coinsPerRupee*10} coins = ₹10 • Minimum ${C().minCoins} coins</div><div class="grid">`+Object.keys(W).map(k=>`<button class="card" style="border:0;text-align:center;cursor:pointer;color:inherit;${C().wd[k]?'':'opacity:.4'};${s===k?'outline:3px solid var(--g)':''}" data-a="wt" data-k="${k}"><div class="ic" style="margin:0 auto 8px">${W[k].i}</div><b>${W[k].n}</b></button>`).join('')+`</div>`;
+  if(s){h+=`<div class="card"><b>${W[s].n}</b><div class="grid" style="margin-top:10px">${AMTS.map(n=>`<button class="amt ${WS.a===n?'on':''}" data-a="wa" data-n="${n}">₹${n}<div class="mu">${n*C().coinsPerRupee} coins</div></button>`).join('')}</div>`;
+   if(WS.a)h+=`<input id="wem" type="email" placeholder="Your email (to receive the code/payment)">${s==='upi'?'<input id="wup" placeholder="Your UPI ID (name@bank)">':''}<button class="btn" data-a="ws">Redeem ₹${WS.a}</button>`;h+='</div>'}
+  a.innerHTML=h+nav();return}
+ if(V==='hist'){const l=DB.wd.filter(w=>w.uid===u.id).sort((x,y)=>y.t-x.t);a.innerHTML=hdr()+`<h2>Withdrawal History</h2>`+(l.length?l.map(w=>`<div class="card"><div class="row"><b>${esc(W[w.type]?W[w.type].n:w.type)} ₹${w.amt}</b><span class="chip ${w.status}">${w.status}</span></div><div class="mu">${esc(w.email)}${w.upi?' • '+esc(w.upi):''}<br>${w.coins} coins • ${new Date(w.t).toLocaleString()}</div></div>`).join(''):'<div class="card mu">No withdrawals yet.</div>')+nav()}}
+function tick(sec,on,end){const e=Date.now()+sec*1000;clearInterval(T.iv);T.iv=setInterval(()=>{const r=e-Date.now();on(Math.max(0,Math.ceil(r/1000)),Math.min(1,1-r/(sec*1000)));if(r<=0){clearInterval(T.iv);if(!T.dead)end()}},150)}
+function startTask(g){const u=me();if(!u)return;if(!C().games[g]){toast('Game disabled');V='home';render();return}if(u.progress[g]>=TASKS){toast('All tasks done!');V='home';render();return}
+ stopT();T={g,credited:false,score:0};V='game';const k=u.progress[g]+1;
+ $('#app').innerHTML=hdr()+`<div class="card"><div class="row"><b>${G[g].i} ${G[g].n} • Task ${k}/${TASKS}</b><b id="tm">${C().play}s</b></div><div class="bar"><i id="pb"></i></div><div class="arena" id="ar"></div><div class="msg" id="ms">Play for ${C().play} seconds…</div><button class="btn" id="cb" data-a="collect" hidden>Collect</button></div><button class="ghost" data-a="go" data-v="home">← Back</button>`;
+ const ar=$('#ar');if(g==='math')mq();else{T.sp=setInterval(()=>spawn(g),650);spawn(g)}
+ tick(C().play,(l,p)=>{$('#tm').textContent=l+'s';$('#pb').style.width=p*100+'%'},()=>{clearInterval(T.sp);ar.innerHTML='<div style="display:grid;place-items:center;height:100%;font-size:44px">✅</div>';$('#ms').textContent='Well played! Tap Collect.';$('#tm').textContent='Done';$('#cb').hidden=false})}
+function mq(){const o=['+','-','×'][rnd(0,2)];let a=rnd(2,20),b=rnd(2,20);if(o==='-'&&b>a)[a,b]=[b,a];if(o==='×'){a=rnd(2,12);b=rnd(2,12)}const r=o==='+'?a+b:o==='-'?a-b:a*b,s=new Set([r]);while(s.size<4)s.add(r+rnd(-6,6));const op=[...s].sort(()=>Math.random()-.5),ar=$('#ar');if(!ar||T.dead)return;
+ ar.innerHTML=`<div style="text-align:center;font-size:34px;font-weight:800;padding-top:30px">${a} ${o} ${b} = ?</div><div class="opt">${op.map(v=>`<button data-a="ans" data-v="${v}">${v}</button>`).join('')}</div>`;T.ans=r}
+function spawn(g){const ar=$('#ar');if(!ar||T.dead)return;const e=['🍎','🍌','🍇','🍉','🍓','🍊'][rnd(0,5)],b=document.createElement('button');b.className='it';b.textContent=g==='balloon'?['🎈','🎈','🎈'][0]:e;b.style.left=rnd(4,82)+'%';b.style.top=rnd(4,78)+'%';
+ b.onclick=()=>{b.remove();T.score++;$('#ms').textContent=(g==='balloon'?'Popped: ':'Collected: ')+T.score};ar.appendChild(b);setTimeout(()=>b.remove(),1700)}
+function showAd(){return new Promise(res=>{/* TODO: put your rewarded-ad SDK + ad IDs here. Call res(true) ONLY after the ad is finished and the user is back in the app; res(false) on failure. */
+ const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="card"><h2>Ad Placeholder</h2><div class="mu">Your ad plays here</div><h1 id="as">${C().adSec}</h1><button class="btn" id="ac" disabled>Close Ad</button></div>`;document.body.appendChild(o);let l=C().adSec;const iv=setInterval(()=>{l--;$('#as').textContent=Math.max(l,0);if(l<=0){clearInterval(iv);$('#ac').disabled=false}},1000);$('#ac').onclick=()=>{o.remove();res(true)}})}
+function credit(){const u=me();if(!u||!T||T.dead||T.credited)return false;T.credited=true;const c=Number(C().coinsPerAd)||0;u.coins+=c;u.earned+=c;u.progress[T.g]++;DB.total+=c;u.last=Date.now();save();const n=$('#cn');if(n)n.textContent=u.coins;return c}
+async function collect(){const b=$('#cb');if(!b||b.disabled||!T||T.credited)return;b.disabled=true;let ok=false;try{ok=await showAd()}catch(e){}
+ if(!T||T.dead)return;if(!ok){$('#ms').textContent='Ad not completed. No coins given.';b.disabled=false;return}
+ const c=credit();$('#ms').textContent='+'+c+' coins 🎉';b.hidden=true;const g=T.g;tick(C().wait,l=>{$('#tm').textContent='Next in '+l+'s';$('#pb').style.width=(1-l/C().wait)*100+'%'},()=>startTask(g))}
+function wdSubmit(){const u=me(),t=WS.t,n=WS.a,em=$('#wem').value.trim(),up=$('#wup')?$('#wup').value.trim():'',need=n*C().coinsPerRupee;
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em))return toast('Enter a valid email');if(t==='upi'&&!/^[\w.\-]{2,}@[A-Za-z]{2,}$/.test(up))return toast('Enter a valid UPI ID');
+ if(need<C().minCoins)return toast('Minimum '+C().minCoins+' coins');if(u.coins<need)return toast('Need '+need+' coins. You have '+u.coins);
+ u.coins-=need;DB.wd.push({id:'W'+Date.now().toString(36)+rnd(10,99),uid:u.id,email:em,upi:up,type:t,amt:n,coins:need,status:'Pending',t:Date.now()});save();WS={t:null,a:null};toast('Request sent! Status: Pending');V='hist';render()}
+function adminHTML(){if(!A.ok)return `<div class="card"><h2>Admin Login</h2><input id="ap" type="password" placeholder="Password"><button class="btn" data-a="alog">Enter</button><button class="ghost" data-a="aout">← Back to app</button></div>`;
+ const us=Object.values(DB.users),tabs=[['dash','Dashboard'],['users','Users'],['wd','Withdrawals'],['cfg','Settings']];let b='';
+ if(A.tab==='dash')b=`<div class="grid"><div class="card"><div class="mu">Users</div><h2>${us.length}</h2></div><div class="card"><div class="mu">Coins given</div><h2>${DB.total}</h2></div><div class="card"><div class="mu">Withdrawals</div><h2>${DB.wd.length}</h2></div><div class="card"><div class="mu">Pending</div><h2>${DB.wd.filter(w=>w.status==='Pending').length}</h2></div></div>`;
+ if(A.tab==='users')b=`<div class="card sc"><table><tr><th>User</th><th>Type</th><th>Coins</th><th>Tasks</th><th>Last</th></tr>${us.map(u=>`<tr><td>${esc(u.name)}</td><td>${u.type}</td><td>${u.coins}</td><td>${Object.values(u.progress).reduce((a,c)=>a+c,0)}</td><td>${new Date(u.last||u.created).toLocaleDateString()}</td></tr>`).join('')}</table></div>`;
+ if(A.tab==='wd')b=DB.wd.slice().reverse().map(w=>`<div class="card"><div class="row"><b>${esc(W[w.type]?W[w.type].n:w.type)} ₹${w.amt}</b><span class="chip ${w.status}">${w.status}</span></div><div class="mu">${esc(w.email)}${w.upi?' • '+esc(w.upi):''}<br>User: ${esc(w.uid)}</div>${w.status==='Pending'?`<div class="grid"><button class="btn" data-a="wdok" data-id="${w.id}">Completed</button><button class="btn sec" data-a="wdno" data-id="${w.id}">Reject</button></div>`:''}</div>`).join('')||'<div class="card mu">No requests.</div>';
+ if(A.tab==='cfg'){const c=C(),f=(id,l,v,t='number')=>`<div class="mu" style="margin-top:8px">${l}</div><input id="c_${id}" type="${t}" value="${esc(v)}">`;
+  b=`<div class="card">${f('coinsPerAd','Coins per ad',c.coinsPerAd)}${f('coinsPerRupee','Coins per ₹1 (120 = 1200 coins per ₹10)',c.coinsPerRupee)}${f('minCoins','Minimum withdrawal (coins)',c.minCoins)}${f('play','Play time (sec)',c.play)}${f('wait','Wait time (sec)',c.wait)}${f('adSec','Placeholder ad length (sec)',c.adSec)}${f('adminPass','Admin password',c.adminPass,'text')}${f('appText','App tagline',c.appText,'text')}<div class="mu" style="margin-top:8px">Terms &amp; Conditions</div><textarea id="c_terms" rows="5">${esc(c.terms)}</textarea>
+  <div class="mu" style="margin-top:10px">Games</div>${Object.keys(G).map(k=>`<label class="t"><input type="checkbox" id="g_${k}" ${c.games[k]?'checked':''}>${G[k].n}</label>`).join('')}<div class="mu" style="margin-top:10px">Withdraw options</div>${Object.keys(W).map(k=>`<label class="t"><input type="checkbox" id="w_${k}" ${c.wd[k]?'checked':''}>${W[k].n}</label>`).join('')}<button class="btn" data-a="csave">Save Settings</button></div>`}
+ return `<div class="hd"><b>Admin Panel</b><button class="ghost" style="margin:0" data-a="aout">Exit</button></div><div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:10px">${tabs.map(([k,l])=>`<button class="ghost ${A.tab===k?'on':''}" style="margin:0;${A.tab===k?'background:var(--g);color:#fff':''}" data-a="atab" data-k="${k}">${l}</button>`).join('')}</div>`+b}
+function cfgSave(){const c=C(),n=(id,min)=>{const v=Number($('#c_'+id).value);return isFinite(v)&&v>=min?v:c[id]};
+ c.coinsPerAd=n('coinsPerAd',0);c.coinsPerRupee=n('coinsPerRupee',1);c.minCoins=n('minCoins',1);c.play=n('play',3);c.wait=n('wait',0);c.adSec=n('adSec',1);c.adminPass=$('#c_adminPass').value||c.adminPass;c.appText=$('#c_appText').value;c.terms=$('#c_terms').value;
+ Object.keys(G).forEach(k=>c.games[k]=$('#g_'+k).checked?1:0);Object.keys(W).forEach(k=>c.wd[k]=$('#w_'+k).checked?1:0);save();toast('Settings saved');render()}
+function setWd(id,s){const w=DB.wd.find(x=>x.id===id);if(!w||w.status!=='Pending')return;w.status=s;if(s==='Rejected'&&DB.users[w.uid])DB.users[w.uid].coins+=w.coins;save();render()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.disabled)return;const a=b.dataset.a,d=b.dataset;
+ if(a==='login'){const v=$('#em').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))return toast('Enter a valid email');login(v)}
+ else if(a==='guest')login('');else if(a==='out'){DB.session=null;save();V='login';render()}
+ else if(a==='go'){V=d.v;if(V!=='wd')WS={t:null,a:null};render()}
+ else if(a==='play')startTask(d.g);else if(a==='collect')collect();
+ else if(a==='ans'){if(!T||T.dead)return;if(Number(d.v)===T.ans){T.score++;$('#ms').textContent='Correct! '+T.score}else $('#ms').textContent='Try again';mq()}
+ else if(a==='wt'){if(!C().wd[d.k])return toast('Option disabled');WS={t:d.k,a:null};render()}
+ else if(a==='wa'){WS.a=Number(d.n);render()}else if(a==='ws')wdSubmit();
+ else if(a==='adm'){V='admin';render()}else if(a==='aout'){A.ok=false;V=me()?'home':'login';render()}
+ else if(a==='alog'){if($('#ap').value===C().adminPass){A.ok=true;render()}else toast('Wrong password')}
+ else if(a==='atab'){A.tab=d.k;render()}else if(a==='wdok')setWd(d.id,'Completed');else if(a==='wdno')setWd(d.id,'Rejected');else if(a==='csave')cfgSave()});
+window.addEventListener('error',()=>toast('Something went wrong'));load();if(me())V='home';render();
+</script></body></html>
